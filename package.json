@@ -2,7 +2,7 @@
     "name": "porto_react_01",
     "main": "index.js",
     "scripts": {
-        "dev:start": "webpack --mode=development",
+        "start:dev": "webpack --mode=development",
         "build": "react-script build"
     },
     "dependencies": {
