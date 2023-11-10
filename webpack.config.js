@@ -1,13 +1,21 @@
 const path = require('path')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = [
     {
-        entry: './pages/index.tsx',
-        mode: 'developmemt',
-        target: 'web',
+        mode: 'development',
+        entry: './pages/index.js',
         output: {
-            path: path.resolve(__dirname, 'dist/client'),
-            filename: 'client_bundle.js'
+            path: path.resolve(__dirname, 'public'),
+            filename: 'main.js'
+        },
+        target: 'web',
+        devServer: {
+            port: '3000',
+            static: ['./public'],
+            hot: true,
+            liveReload: true
         },
         resolve: {
             extensions: ['.js', '.jsx', '.ts', '.tsx']
@@ -15,19 +23,9 @@ module.exports = [
         module: {
             rules: [
                 {
-                    test: /\.(ts|tsx)$/,
-                    exclude: /node_modules/,
-                    use: 'ts-loader'
-                },
-                {
                     test: /\.(js|jsx)$/,
                     exclude: /node_modules/,
-                    use: {
-                        loader: 'babel-loader',
-                        options: {
-                            presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript']
-                        }
-                    }
+                    use: 'babel-loader'
                 },
                 {
                     test: /\.css$/,
@@ -39,6 +37,8 @@ module.exports = [
                     type: 'assets/resource'
                 }
             ]
-        }
+        },
+        plugins: [new HtmlWebpackPlugin({ template: './public/index.html' })],
+
     }
 ]
