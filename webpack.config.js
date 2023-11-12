@@ -4,8 +4,7 @@ const webpack = require('webpack');
 
 module.exports = [
     {
-        mode: 'development',
-        entry: './pages/index.js',
+        entry: './pages/index.tsx',
         output: {
             path: path.resolve(__dirname, 'public'),
             filename: 'main.js'
@@ -15,13 +14,19 @@ module.exports = [
             port: '3000',
             static: ['./public'],
             hot: true,
-            liveReload: true
+            liveReload: true,
+            historyApiFallback: true
         },
         resolve: {
             extensions: ['.js', '.jsx', '.ts', '.tsx']
         },
         module: {
             rules: [
+                {
+                    test: /\.(ts|tsx)$/,
+                    exclude: /node_modules/,
+                    use: 'ts-loader'
+                },
                 {
                     test: /\.(js|jsx)$/,
                     exclude: /node_modules/,
