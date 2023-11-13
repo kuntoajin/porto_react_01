@@ -1,12 +1,9 @@
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client'
-import { RouterProvider } from "react-router-dom";
-import { router } from '../src/router/router';
+function Home() {
+    return (
+        <div className='container max-w-[1200px] mx-auto'>
+            <p>test</p>
+        </div>
+    )
+}
 
-const root = createRoot(document.getElementById('app') as HTMLElement)
-
-root.render(
-    <StrictMode>
-        <RouterProvider router={router} />
-    </StrictMode>
-)
+export default Home

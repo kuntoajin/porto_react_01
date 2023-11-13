@@ -1,9 +1,11 @@
 {
     "name": "porto_react_01",
-    "main": "./pages/index.js",
+    "main": "./pages/mount.tsx",
     "scripts": {
         "build": "webpack --mode=production",
-        "start:dev": "webpack serve --mode=development",
+        "start:dev:tailwind": "tailwindcss -i ./src/styles/global.css -o ./public/output.css --watch",
+        "start:dev:app": "webpack serve --mode=development",
+        "start:dev": "concurrently --kill-others \"npm run start:dev:tailwind\" \"npm run start:dev:app\"",
         "start:prod": "node ./public/main.js"
     },
     "dependencies": {
@@ -12,6 +14,7 @@
         "match-sorter": "^6.3.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-redux": "^8.1.3",
         "react-router-dom": "^6.18.0",
         "sort-by": "^1.2.0"
     },
@@ -27,10 +30,15 @@
         "@types/react-dom": "^18.2.14",
         "babel-eslint": "^10.1.0",
         "babel-loader": "^9.1.3",
+        "concurrently": "^8.2.2",
         "css-loader": "^6.8.1",
         "html-webpack-plugin": "^5.5.3",
         "nodemon": "^3.0.1",
+        "postcss": "^8.4.31",
+        "postcss-loader": "^7.3.3",
+        "postcss-preset-env": "^9.3.0",
         "style-loader": "^3.3.3",
+        "tailwindcss": "^3.3.5",
         "ts-loader": "^9.5.0",
         "typescript": "^5.2.2",
         "webpack": "^5.89.0",
